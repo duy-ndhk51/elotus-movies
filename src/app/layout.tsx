@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "@/styles/app.scss";
+import '@/styles/app.scss';
 
-const inter = Inter({ subsets: ["latin"] });
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "Movies",
-  description: "Movies",
+  title: 'Movies',
+  description: 'Movies',
 };
 
 export default function RootLayout({
