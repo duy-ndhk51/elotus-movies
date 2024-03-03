@@ -1,0 +1,90 @@
+@use 'sass:math' as math;
+
+@function rem($px, $base: 10px) {
+  @return math.div($px, $base) * 1rem;
+}
+
+@function em($px, $base: 10px) {
+  @return math.div($px, $base) * 1em;
+}
+
+@function vh($px, $base: 1080px) {
+  @return math.div($px, $base) * 100vh;
+}
+
+@function vw($px, $base: 1440px) {
+  @return math.div($px, $base) * 100vw;
+}
+
+@function px($val) {
+  @return $val * 1px;
+}
+
+@function fcLineHeight($line, $font_size) {
+  @return $line/$font_size;
+}
+
+@mixin lineHeight($line, $font_size) {
+  line-height: fcLineHeight($line, $font_size);
+}
+
+@mixin onlyMobile {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin fromTablet {
+  @media (max-width: 1199px) {
+    @content;
+  }
+}
+
+@mixin min-tablet {
+  @media (min-width: theme('screens.sm')) {
+    @content;
+  }
+}
+
+@mixin min-tabletWide {
+  @media (min-width: theme('screens.md')) {
+    @content;
+  }
+}
+
+@mixin pcSmall {
+  @media (min-width: theme('screens.lg')) {
+    @content;
+  }
+}
+
+@mixin pcMid {
+  @media (min-width: theme('screens.xl')) {
+    @content;
+  }
+}
+
+@mixin pcWide {
+  @media (min-width: theme('screens.xxl')) {
+    @content;
+  }
+}
+
+@mixin minHeightPc {
+  @media (min-height: 1100px) {
+    @content;
+  }
+}
+
+@mixin minHeightTablet {
+  @media (min-height: 960px) {
+    @content;
+  }
+}
+
+@mixin maxHeightTablet {
+  @media (max-height: 960px) {
+    @content;
+  }
+}
+
