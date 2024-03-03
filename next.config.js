@@ -1,5 +1,3 @@
-const path = require("path");
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   swcMinify: true,
@@ -9,6 +7,11 @@ const nextConfig = {
           @import "@styles/_variables.scss";
           @import "@styles/_tool.scss";
         `,
+  },
+  config: {
+    commitizen: {
+      path: '@commitlint/cz-commitlint',
+    },
   },
 };
 
