@@ -1,9 +1,10 @@
 import dynamic from 'next/dynamic';
-import type { FC } from 'react';
+import { type FC } from 'react';
 
 import RenderImage from '@/components/RenderImage';
 import { ClientRouting } from '@/constants/routing';
 import type { MovieDetailsResponse } from '@/interfaces/movies';
+import { useMoviesSignal } from '@/stores/movies';
 import abbreviateNumber from '@/utils/abbreviateNumber';
 import formatUSD from '@/utils/formatUSD';
 
@@ -32,9 +33,24 @@ const Movie: FC<IMovieProps> = ({ movie }) => {
     genres,
     status,
   } = movie;
-  console.log('🚀 ~ movie:', movie);
+  const { clearMovieID, DOMRemoveDisableScroll } = useMoviesSignal();
+
   return (
-    <article className={styles.detailedContent}>
+    <section className={styles.detailedContent}>
+      <button
+        type="button"
+        className={styles.closeButton}
+        onClick={() => {
+          clearMovieID();
+          DOMRemoveDisableScroll();
+        }}
+      >
+        <SVG
+          src={`${ClientRouting.publicSVGs}/close.svg`}
+          width={24}
+          height={24}
+        />
+      </button>
       <div className={styles.mainContent}>
         <div className={styles.mainContent__thumbnail}>
           <div className={styles.mainContent__thumbnailContainer}>
@@ -140,7 +156,7 @@ const Movie: FC<IMovieProps> = ({ movie }) => {
             .join(', ')}
         </div>
       )}
-    </article>
+    </section>
   );
 };
 

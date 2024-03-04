@@ -1,19 +1,26 @@
 import { useSignals } from '@preact/signals-react/runtime';
-import React from 'react';
+import type { MouseEventHandler } from 'react';
 
-import { currentMovieID } from '@/stores/movies';
+import { currentMovieID, useMoviesSignal } from '@/stores/movies';
 
 import Content from './Content';
-import Overlay from './Overlay';
 import styles from './styles.module.scss';
 
 const DetailedMovieContainer = () => {
   useSignals();
+  const { clearMovieID, DOMRemoveDisableScroll } = useMoviesSignal();
   if (!currentMovieID.value) return null;
+
+  const handleClick: MouseEventHandler<HTMLDivElement> = () => {
+    clearMovieID();
+    DOMRemoveDisableScroll();
+  };
+
   return (
-    <div className={styles.detailedMovie}>
-      <Content movieID={currentMovieID.value} />
-      <Overlay />
+    <div className={styles.detailedMovie} onClick={handleClick}>
+      <div className={styles.detailedMovie__dialog}>
+        <Content movieID={currentMovieID.value} />
+      </div>
     </div>
   );
 };

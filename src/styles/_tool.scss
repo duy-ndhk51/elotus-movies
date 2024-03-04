@@ -1,4 +1,4 @@
-@use 'sass:math' as math;
+@use "sass:math" as math;
 
 @function rem($px, $base: 10px) {
   @return math.div($px, $base) * 1rem;
@@ -39,33 +39,38 @@
     @content;
   }
 }
+@mixin fromCoverPopup {
+  @media (max-width: 1024px) {
+    @content;
+  }
+}
 
 @mixin min-tablet {
-  @media (min-width: theme('screens.sm')) {
+  @media (min-width: theme("screens.sm")) {
     @content;
   }
 }
 
 @mixin min-tabletWide {
-  @media (min-width: theme('screens.md')) {
+  @media (min-width: theme("screens.md")) {
     @content;
   }
 }
 
 @mixin pcSmall {
-  @media (min-width: theme('screens.lg')) {
+  @media (min-width: theme("screens.lg")) {
     @content;
   }
 }
 
 @mixin pcMid {
-  @media (min-width: theme('screens.xl')) {
+  @media (min-width: theme("screens.xl")) {
     @content;
   }
 }
 
 @mixin pcWide {
-  @media (min-width: theme('screens.xxl')) {
+  @media (min-width: theme("screens.xxl")) {
     @content;
   }
 }
@@ -87,4 +92,3 @@
     @content;
   }
 }
-
