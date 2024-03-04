@@ -1,77 +1,86 @@
 'use client';
 
+import { useSignals } from '@preact/signals-react/runtime';
 import { clsx } from 'clsx';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import type { FC } from 'react';
+import { type FC, useCallback } from 'react';
 
 import { ClientRouting } from '@/constants/routing';
-import { useCurrentPage } from '@/hooks/useCurrentPage';
+import { useCurrentParams } from '@/hooks/useCurrentParams';
+import { totalPages } from '@/stores/movies';
 
+import PInput from './PInput';
 import styles from './styles.module.scss';
 
 const SVG = dynamic(() => import('react-inlinesvg'), { ssr: false });
-
-interface IPaginationProps {
-  totalPages: number;
-}
-const Pagination: FC<IPaginationProps> = ({ totalPages }) => {
-  const currentPage = useCurrentPage();
+const Pagination: FC = () => {
+  useSignals();
+  const { currentPage, currentType } = useCurrentParams();
   const router = useRouter();
 
-  const handleEnterPage = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      const value = Number(event.currentTarget.value);
-      if (value >= 1 && value <= totalPages) {
-        router.push(`/?page=${value}`);
+  const handleEnterPage = useCallback(
+    (event: React.KeyboardEvent<HTMLInputElement>) => {
+      if (event.key === 'Enter') {
+        const value = Number(event.currentTarget.value);
+        if (value >= 1 && value <= totalPages.value) {
+          router.push(`/?page=${value}&type=${currentType}`);
+        }
       }
-    }
-  };
+    },
+    [router, currentType],
+  );
 
   return (
     <nav className={styles.pagination}>
-      {currentPage > 1 && (
-        <Link
-          className={clsx(styles.pagination__link)}
-          href={`/?page=${currentPage - 1}`}
-        >
-          <SVG
-            className={styles.pagination__linkPrev}
-            src={`${ClientRouting.publicSVGs}/caret-right.svg`}
-            width={24}
-            height={24}
-          />
-        </Link>
-      )}
+      <Link
+        className={clsx(styles.pagination__link)}
+        href={`/?page=${currentPage - 1}&type=${currentType}`}
+        onClick={(e) => {
+          if (currentPage <= 1) {
+            e.preventDefault();
+          }
+        }}
+      >
+        <SVG
+          className={styles.pagination__linkPrev}
+          src={`${ClientRouting.publicSVGs}/caret-right.svg`}
+          width={18}
+          height={18}
+        />
+      </Link>
 
       <div className={styles.pagination__inputContainer}>
         <div className={styles.pagination__inputWrapper}>
-          <input
+          <PInput
             type="number"
             onKeyDown={handleEnterPage}
             className={styles.pagination__input}
             min={1}
-            max={totalPages}
-            defaultValue={String(currentPage)}
+            max={totalPages.value}
+            value={String(currentPage)}
           />
         </div>
         <span>/</span>
         <span>{totalPages}</span>
       </div>
 
-      {currentPage < totalPages && (
-        <Link
-          className={styles.pagination__link}
-          href={`/?page=${currentPage + 1}`}
-        >
-          <SVG
-            src={`${ClientRouting.publicSVGs}/caret-right.svg`}
-            width={24}
-            height={24}
-          />
-        </Link>
-      )}
+      <Link
+        className={styles.pagination__link}
+        href={`/?page=${currentPage + 1}&type=${currentType}`}
+        onClick={(e) => {
+          if (currentPage > totalPages.value) {
+            e.preventDefault();
+          }
+        }}
+      >
+        <SVG
+          src={`${ClientRouting.publicSVGs}/caret-right.svg`}
+          width={18}
+          height={18}
+        />
+      </Link>
     </nav>
   );
 };

@@ -5,7 +5,7 @@
   align-items: center;
 
   &__link {
-    padding: rem(8px) rem(12px);
+    padding: rem(6px);
     border-radius: rem(5px);
     cursor: pointer;
     color: $offWhite;
@@ -23,8 +23,8 @@
   }
 
   &__input {
-    height: 20px;
-    width: 30px;
+    height: rem(20px);
+    width: rem(45px);
     background-color: transparent;
     color: $offWhite;
     position: relative;
