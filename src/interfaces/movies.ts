@@ -3,7 +3,8 @@ export interface MoviesResponse {
     maximum: string;
     minimum: string;
   };
-  page: Movie[];
+  page: number;
+  results: Movie[];
   total_pages: number;
   total_results: number;
 }

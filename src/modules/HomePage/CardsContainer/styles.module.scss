@@ -1,0 +1,19 @@
+.cardsContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: rem(20px);
+  max-width: rem(1024px);
+  justify-items: center;
+  margin: auto;
+  padding: rem(75px) 0;
+
+  @include fromTablet {
+    grid-template-columns: repeat(3, 1fr);
+    padding: rem(75px) rem(20px);
+  }
+  @include onlyMobile {
+    grid-template-columns: repeat(1, 1fr);
+    padding: rem(75px) rem(20px);
+    gap: rem(40px);
+  }
+}
