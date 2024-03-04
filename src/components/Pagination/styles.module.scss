@@ -28,7 +28,7 @@
     background-color: transparent;
     color: $offWhite;
     position: relative;
-    font-size: rem(16px);
+    font-size: rem(14px);
     &Wrapper {
       position: relative;
       &:after {
@@ -54,6 +54,7 @@
       align-items: center;
       color: $offWhite;
       margin-bottom: rem(5px);
+      font-size: rem(14px);
     }
   }
 }

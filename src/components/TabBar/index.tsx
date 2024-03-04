@@ -41,8 +41,8 @@ const TabBar = () => {
       >
         <SVG
           src={`${ClientRouting.publicSVGs}/top-rated.svg`}
-          width={28}
-          height={28}
+          width={24}
+          height={24}
         />
       </button>
       <button
@@ -59,8 +59,8 @@ const TabBar = () => {
       >
         <SVG
           src={`${ClientRouting.publicSVGs}/now-playing.svg`}
-          width={28}
-          height={28}
+          width={24}
+          height={24}
         />
       </button>
       <button
@@ -69,8 +69,8 @@ const TabBar = () => {
       >
         <SVG
           src={`${ClientRouting.publicSVGs}/search.svg`}
-          width={28}
-          height={28}
+          width={24}
+          height={24}
         />
       </button>
       <div className={styles.tabBar__item}>

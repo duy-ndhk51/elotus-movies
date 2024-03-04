@@ -46,8 +46,8 @@ const Pagination: FC = () => {
         <SVG
           className={styles.pagination__linkPrev}
           src={`${ClientRouting.publicSVGs}/caret-right.svg`}
-          width={18}
-          height={18}
+          width={16}
+          height={16}
         />
       </Link>
 
@@ -77,8 +77,8 @@ const Pagination: FC = () => {
       >
         <SVG
           src={`${ClientRouting.publicSVGs}/caret-right.svg`}
-          width={18}
-          height={18}
+          width={16}
+          height={16}
         />
       </Link>
     </nav>
