@@ -38,9 +38,9 @@
 
     &Meta {
       display: flex;
-      justify-content: space-between;
       align-items: center;
       font-size: rem(14px);
+      gap: rem(5px);
 
       span {
         opacity: 0.6;

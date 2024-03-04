@@ -1,7 +1,9 @@
 import dynamic from 'next/dynamic';
-import type { FC } from 'react';
+import { type FC, useCallback } from 'react';
 
 import { ClientRouting } from '@/constants/routing';
+import { useMoviesSignal } from '@/stores/movies';
+import abbreviateNumber from '@/utils/abbreviateNumber';
 
 import RenderImage from '../RenderImage';
 import s from './styles.module.scss';
@@ -17,8 +19,12 @@ interface ICardProps {
 }
 
 const Card: FC<ICardProps> = ({ thumbnail, rating, title, voteCount, id }) => {
+  const { setCurrentMovieID } = useMoviesSignal();
+  const handleOnClick = useCallback(() => {
+    setCurrentMovieID(String(id));
+  }, [id]);
   return (
-    <article className={s.card} id={String(id)}>
+    <article className={s.card} id={String(id)} onClick={handleOnClick}>
       <div className={s.card__thumbnailContainer}>
         <RenderImage
           src={thumbnail}
@@ -40,9 +46,7 @@ const Card: FC<ICardProps> = ({ thumbnail, rating, title, voteCount, id }) => {
             />
             <span>{rating.toFixed(1)}</span>
           </p>
-          <p>
-            <span>{voteCount}</span>
-          </p>
+          <span className="italic">({abbreviateNumber(voteCount)})</span>
         </div>
         <button type="button" className={s.card__button}>
           View Detail

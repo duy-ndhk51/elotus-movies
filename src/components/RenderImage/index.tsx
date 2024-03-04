@@ -5,7 +5,7 @@ import { forwardRef, useMemo } from 'react';
 import { ClientRouting } from '@/constants/routing';
 
 type RenderImageProps = Omit<ImageProps, 'src'> & {
-  src?: ImageProps['src'];
+  src?: ImageProps['src'] | null;
   cropSize?: 'w500' | 'w400' | 'w300' | 'w200' | 'original';
 };
 const RenderImage = forwardRef<HTMLImageElement, RenderImageProps>(
