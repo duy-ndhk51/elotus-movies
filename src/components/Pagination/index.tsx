@@ -70,7 +70,7 @@ const Pagination: FC = () => {
         className={styles.pagination__link}
         href={`/?page=${currentPage + 1}&type=${currentType}`}
         onClick={(e) => {
-          if (currentPage > totalPages.value) {
+          if (currentPage >= totalPages.value) {
             e.preventDefault();
           }
         }}
