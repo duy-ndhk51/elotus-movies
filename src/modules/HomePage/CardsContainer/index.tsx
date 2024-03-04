@@ -1,33 +1,13 @@
-import useSWR from 'swr';
-
 import Card from '@/components/Card';
 import Pagination from '@/components/Pagination';
-import { EMovieType } from '@/constants/movie';
-import { APIRouting } from '@/constants/routing';
-import { useCurrentPage } from '@/hooks/useCurrentPage';
-import type { MoviesResponse } from '@/interfaces/movies';
-import { axiosFetcher } from '@/utils/fetcher';
+import { useCurrentParams } from '@/hooks/useCurrentParams';
+import useMovies from '@/hooks/useMovies';
 
 import styles from './styles.module.scss';
 
 const CardsContainer = () => {
-  const currentPage = useCurrentPage();
-
-  const { data: movies } = useSWR<MoviesResponse>(
-    [
-      `/${APIRouting.movie}`,
-      {
-        type: EMovieType.TopRated,
-        page: currentPage,
-      },
-    ],
-    ([url, params]: [string, any]) => axiosFetcher(url, params),
-    {
-      revalidateIfStale: false,
-      revalidateOnFocus: false,
-      revalidateOnReconnect: false,
-    },
-  );
+  const { currentPage, currentType } = useCurrentParams();
+  const { movies } = useMovies(currentPage, currentType);
 
   return (
     <>
