@@ -1,13 +1,16 @@
 import '@/styles/app.scss';
 
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Poppins } from 'next/font/google';
 import { Suspense } from 'react';
 import CacheProvider from 'react-inlinesvg/provider';
 
 import TabBar from '@/components/TabBar';
 
-const inter = Inter({ subsets: ['latin'] });
+const poppins = Poppins({
+  weight: ['400', '500', '600', '800'],
+  subsets: ['latin'],
+});
 
 export const metadata: Metadata = {
   title: 'Movies',
@@ -21,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={poppins.className}>
         <CacheProvider>
           {children}
           <Suspense>

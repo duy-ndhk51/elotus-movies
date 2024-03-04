@@ -1,0 +1,53 @@
+.disable-scroll {
+  overflow: hidden;
+  height: 100% !important;
+
+  body {
+    height: 100% !important;
+    overflow: hidden;
+  }
+}
+
+.italic {
+  font-style: italic;
+}
+
+.text-sm {
+  font-size: rem(14px);
+  @include onlyMobile {
+    font-size: rem(12px);
+  }
+}
+
+.object-cover {
+  object-fit: cover;
+}
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+@mixin block($height) {
+  position: relative;
+  height: #{$height}px;
+  width: 100%;
+}
+
+.block-20 {
+  @include block(20);
+}
+
+.block-40 {
+  @include block(40);
+}
+
+.block-60 {
+  @include block(60);
+}
+.block-100 {
+  @include block(100);
+}
