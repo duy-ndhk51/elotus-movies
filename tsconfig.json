@@ -30,6 +30,7 @@
       "@utils/*": ["./src/utils/*"],
       "@public/*": ["./public/*"],
       "@hooks/*": ["./src/hooks/*"],
+      "@stores/*": ["./src/stores/*"],
       "@interfaces/*": ["./src/interfaces/*"]
     }
   },
