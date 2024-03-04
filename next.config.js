@@ -2,6 +2,17 @@
 const nextConfig = {
   swcMinify: true,
   reactStrictMode: true,
+
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'image.tmdb.org',
+        port: '',
+        pathname: '/t/p/**',
+      },
+    ],
+  },
   sassOptions: {
     additionalData: `
           @import "@styles/_variables.scss";
