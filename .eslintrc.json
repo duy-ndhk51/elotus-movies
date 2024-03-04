@@ -39,6 +39,7 @@
         "@typescript-eslint/comma-dangle": "off", // Avoid conflict rule between Eslint and Prettier
         "@typescript-eslint/consistent-type-imports": "error", // Ensure `import type` is used when it's necessary
         "react/react-in-jsx-scope": "off",
+        "jsx-a11y/control-has-associated-label": "off", // Disable Airbnb's specific function type
         "no-restricted-syntax": [
           "error",
           "ForInStatement",
