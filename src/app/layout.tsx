@@ -2,6 +2,8 @@ import '@/styles/app.scss';
 
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { Suspense } from 'react';
+import CacheProvider from 'react-inlinesvg/provider';
 
 import TabBar from '@/components/TabBar';
 
@@ -20,8 +22,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {children}
-        <TabBar />
+        <CacheProvider>
+          {children}
+          <Suspense>
+            <TabBar />
+          </Suspense>
+        </CacheProvider>
       </body>
     </html>
   );
