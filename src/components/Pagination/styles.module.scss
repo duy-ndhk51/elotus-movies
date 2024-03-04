@@ -1,0 +1,59 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: rem(15px);
+  align-items: center;
+
+  &__link {
+    padding: rem(8px) rem(12px);
+    border-radius: rem(5px);
+    cursor: pointer;
+    color: $offWhite;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+    background-color: rgba(242, 242, 242, 0.08);
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &Prev {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__input {
+    height: 20px;
+    width: 30px;
+    background-color: transparent;
+    color: $offWhite;
+    position: relative;
+    font-size: rem(16px);
+    &Wrapper {
+      position: relative;
+      &:after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: $offWhite;
+        opacity: 0.5;
+      }
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    &Container {
+      display: flex;
+      gap: rem(10px);
+      align-items: center;
+      color: $offWhite;
+      margin-bottom: rem(5px);
+    }
+  }
+}
