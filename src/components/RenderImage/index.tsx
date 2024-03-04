@@ -16,7 +16,7 @@ const RenderImage = forwardRef<HTMLImageElement, RenderImageProps>(
       return src
         ? `${process.env.NEXT_PUBLIC_THUMBNAIL_ENDPOINT}/${cropSize}/${src}`
         : `${ClientRouting.publicImages}/placeholder.png`;
-    }, [cropSize]);
+    }, [cropSize, src]);
     return (
       <Image
         {...restProps}

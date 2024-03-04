@@ -24,8 +24,10 @@ const Card: FC<ICardProps> = ({ thumbnail, rating, title, voteCount, id }) => {
           src={thumbnail}
           alt={title}
           fill
-          cropSize="w500"
+          cropSize="w300"
           className={s.card__thumbnail}
+          loading="lazy"
+          sizes="(max-width: 300px) 100vw, 300px"
         />
       </div>
       <div className={s.card__content}>
