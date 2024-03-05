@@ -12,6 +12,7 @@ import { axiosFetcher } from '@/utils/fetcher';
 export default function useMovies(
   currentPage: number,
   currentType: EMovieType,
+  keyword?: string | null,
 ) {
   const {
     data: movies,
@@ -21,6 +22,7 @@ export default function useMovies(
     [
       `/${APIRouting.movie}`,
       {
+        keyword,
         type: currentType,
         page: currentPage,
       },

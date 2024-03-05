@@ -4,8 +4,12 @@
   gap: rem(15px);
   align-items: center;
 
+  @include onlyMobile {
+    gap: rem(8px);
+  }
+
   &__link {
-    padding: rem(6px);
+    padding: rem(3px);
     border-radius: rem(5px);
     cursor: pointer;
     color: $offWhite;
@@ -29,6 +33,12 @@
     color: $offWhite;
     position: relative;
     font-size: rem(14px);
+
+    @include onlyMobile {
+      font-size: rem(12px);
+      width: rem(30px);
+    }
+
     &Wrapper {
       position: relative;
       &:after {
@@ -55,6 +65,10 @@
       color: $offWhite;
       margin-bottom: rem(5px);
       font-size: rem(14px);
+
+      @include onlyMobile {
+        font-size: rem(12px);
+      }
     }
   }
 }

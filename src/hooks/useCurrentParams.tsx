@@ -15,5 +15,7 @@ export function useCurrentParams() {
     return !movieType ? EMovieType.NowPlaying : (movieType as EMovieType);
   }, [currentParams]);
 
-  return { currentPage, currentType };
+  const currentKeyword = currentParams?.get('keyword');
+
+  return { currentPage, currentType, currentKeyword };
 }

@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { type FC, useCallback } from 'react';
 
+import { EMovieType } from '@/constants/movie';
 import { ClientRouting } from '@/constants/routing';
 import { useCurrentParams } from '@/hooks/useCurrentParams';
 import { totalPages } from '@/stores/movies';
@@ -17,7 +18,7 @@ import styles from './styles.module.scss';
 const SVG = dynamic(() => import('react-inlinesvg'), { ssr: false });
 const Pagination: FC = () => {
   useSignals();
-  const { currentPage, currentType } = useCurrentParams();
+  const { currentPage, currentType, currentKeyword } = useCurrentParams();
   const router = useRouter();
 
   const handleEnterPage = useCallback(
@@ -32,11 +33,24 @@ const Pagination: FC = () => {
     [router, currentType],
   );
 
+  const generateNavigationLink = useCallback(
+    (type: 'prev' | 'next') => {
+      const page = type === 'prev' ? currentPage - 1 : currentPage + 1;
+      let queryString = `/?page=${page}&type=${currentType}`;
+
+      if (currentType === EMovieType.All) {
+        queryString += `&keyword=${currentKeyword}`;
+      }
+      return queryString;
+    },
+    [currentType, currentPage, currentKeyword],
+  );
+
   return (
     <nav className={styles.pagination}>
       <Link
         className={clsx(styles.pagination__link)}
-        href={`/?page=${currentPage - 1}&type=${currentType}`}
+        href={generateNavigationLink('prev')}
         onClick={(e) => {
           if (currentPage <= 1) {
             e.preventDefault();
@@ -68,7 +82,7 @@ const Pagination: FC = () => {
 
       <Link
         className={styles.pagination__link}
-        href={`/?page=${currentPage + 1}&type=${currentType}`}
+        href={generateNavigationLink('next')}
         onClick={(e) => {
           if (currentPage >= totalPages.value) {
             e.preventDefault();

@@ -10,6 +10,7 @@ import { ClientRouting } from '@/constants/routing';
 import { useCurrentParams } from '@/hooks/useCurrentParams';
 
 import Pagination from '../Pagination';
+import Search from './Search';
 import styles from './styles.module.scss';
 
 const SVG = dynamic(() => import('react-inlinesvg'), { ssr: false });
@@ -63,16 +64,7 @@ const TabBar = () => {
           height={24}
         />
       </button>
-      <button
-        className={clsx(styles.tabBar__button, styles.tabBar__item)}
-        type="button"
-      >
-        <SVG
-          src={`${ClientRouting.publicSVGs}/search.svg`}
-          width={24}
-          height={24}
-        />
-      </button>
+      <Search />
       <div className={styles.tabBar__item}>
         <Pagination />
       </div>
