@@ -1,8 +1,11 @@
+import clsx from 'clsx';
 import type { ImageProps } from 'next/image';
 import Image from 'next/image';
-import { forwardRef, useMemo } from 'react';
+import { forwardRef, useMemo, useState } from 'react';
 
 import { ClientRouting } from '@/constants/routing';
+
+import styles from './styles.module.scss';
 
 type RenderImageProps = Omit<ImageProps, 'src'> & {
   src?: ImageProps['src'] | null;
@@ -11,6 +14,7 @@ type RenderImageProps = Omit<ImageProps, 'src'> & {
 const RenderImage = forwardRef<HTMLImageElement, RenderImageProps>(
   ({ cropSize = 'original', ...props }, ref) => {
     const { src, ...restProps } = props;
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const finalSrc = useMemo(() => {
       return src
@@ -20,10 +24,16 @@ const RenderImage = forwardRef<HTMLImageElement, RenderImageProps>(
     return (
       <Image
         {...restProps}
+        className={clsx(
+          styles.renderImage,
+          props.className,
+          !isLoading && styles.show,
+        )}
         src={finalSrc}
         ref={ref}
-        placeholder="blur"
-        blurDataURL={finalSrc}
+        onLoad={() => {
+          setIsLoading(false);
+        }}
       />
     );
   },
