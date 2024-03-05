@@ -10,9 +10,12 @@ import styles from './styles.module.scss';
 const SVG = dynamic(() => import('react-inlinesvg'), { ssr: false });
 const Skeleton = () => {
   const { clearMovieID, DOMRemoveDisableScroll } = useMoviesSignal();
+  const handleStopPropagation = (e: React.MouseEvent) => {
+    e.stopPropagation();
+  };
 
   return (
-    <div className={styles.detailedContent}>
+    <section className={styles.detailedContent} onClick={handleStopPropagation}>
       <button
         type="button"
         className={styles.closeButton}
@@ -48,7 +51,7 @@ const Skeleton = () => {
       {Array.from({ length: 4 }).map(() => (
         <div className="skeleton-block-60" key={Math.random()} />
       ))}
-    </div>
+    </section>
   );
 };
 

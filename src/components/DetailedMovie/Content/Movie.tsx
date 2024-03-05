@@ -35,8 +35,12 @@ const Movie: FC<IMovieProps> = ({ movie }) => {
   } = movie;
   const { clearMovieID, DOMRemoveDisableScroll } = useMoviesSignal();
 
+  const handleStopPropagation = (e: React.MouseEvent) => {
+    e.stopPropagation();
+  };
+
   return (
-    <section className={styles.detailedContent}>
+    <section className={styles.detailedContent} onClick={handleStopPropagation}>
       <button
         type="button"
         className={styles.closeButton}
