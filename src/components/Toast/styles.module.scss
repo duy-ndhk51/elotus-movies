@@ -1,0 +1,30 @@
+.toast {
+  position: fixed;
+  top: rem(100px);
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 500;
+  padding: 1rem;
+  background-color: $offWhite;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: rem(5px);
+  transition: all 0.3s ease-in-out;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  gap: rem(10px);
+
+  &.show {
+    transform: translate(-50%, rem(10px));
+    opacity: 1;
+  }
+
+  &__errorIcon {
+    background-color: $red;
+    padding: rem(3px);
+    border-radius: 50%;
+    color: $offWhite;
+    display: flex;
+    align-items: center;
+  }
+}
