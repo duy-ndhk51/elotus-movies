@@ -1,5 +1,6 @@
 'use client';
 
+import { isAxiosError } from 'axios';
 import { useEffect } from 'react';
 import useSWR from 'swr';
 
@@ -7,6 +8,7 @@ import type { EMovieType } from '@/constants/movie';
 import { APIRouting } from '@/constants/routing';
 import type { MoviesResponse } from '@/interfaces/movies';
 import { totalPages } from '@/stores/movies';
+import { useToastSignal } from '@/stores/toast';
 import { axiosFetcher } from '@/utils/fetcher';
 
 export default function useMovies(
@@ -14,6 +16,7 @@ export default function useMovies(
   currentType: EMovieType,
   keyword?: string | null,
 ) {
+  const { enableToast } = useToastSignal();
   const {
     data: movies,
     isLoading,
@@ -32,6 +35,11 @@ export default function useMovies(
       revalidateIfStale: false,
       revalidateOnFocus: false,
       revalidateOnReconnect: false,
+      onError(err) {
+        if (isAxiosError(err)) {
+          enableToast(err.response?.data?.message || err.message);
+        }
+      },
     },
   );
 

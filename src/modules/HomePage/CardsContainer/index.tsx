@@ -16,7 +16,9 @@ const CardsContainer = () => {
   return (
     <section className={styles.cardsContainer}>
       {isLoading
-        ? Array.from({ length: 20 }).map(() => <CardSkeleton />)
+        ? Array.from({ length: 20 }).map(() => (
+            <CardSkeleton key={Math.random()} />
+          ))
         : movies?.results.map(
             ({ id, title, poster_path, vote_average, vote_count }) => (
               <Card
