@@ -1,0 +1,14 @@
+.gridView {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: rem(20px);
+    justify-items: center;
+  
+    @include fromTablet {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @include onlyMobile {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
