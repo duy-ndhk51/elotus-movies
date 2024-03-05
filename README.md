@@ -30,17 +30,18 @@ The following **additional** features are implemented:
 - Please do not use any CSS/SCSS framework or UI library
 
 ## Video Walkthrough
+[Video warkthrough](https://github.com/duy-ndhk51/elotus-movies/assets/53527210/842f4cd2-0ef6-4898-a0b6-f9cc919aa637)
 
-Here's a walkthrough of implemented user stories:
+## How to build
 
-> Please record screen to a GIF file and attach link here
+1. Install Nodejs (v18.18.0), and Yarn (v1.22.21)
+2. Run yarn install
+3. Copy .env.example to .env, fill your themoviedb token to ACCESS_TOKEN_AUTH
+4. Run yarn build
+5. Run yarn start
+6. The app with production mode will run in port 3000
 
-## Submit
 
-**When you're done, send us back a link to a repository with your source code, with a description of what you've done and any build instructions in the readme!**
-
-
-> You can use this file as the readme (please update what you've done, build instructions).
 
 ## License
 
