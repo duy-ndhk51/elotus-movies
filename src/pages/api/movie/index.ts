@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { ELanguage } from '@/constants/language';
-import { EMovieType } from '@/constants/movie';
+import { defaultMovieData, EMovieType } from '@/constants/movie';
 import type { MoviesResponse } from '@/interfaces/movies';
 import APIError from '@/utils/api-error';
 import errorHandler from '@/utils/error-handler';
@@ -21,7 +21,7 @@ async function handle(req: NextApiRequest, res: NextApiResponse) {
   }
 
   if (type === EMovieType.All && typeof keyword !== 'string') {
-    throw new APIError('Enter the keyword', 400);
+    return res.status(200).json(defaultMovieData);
   }
 
   if (req.method === 'GET') {

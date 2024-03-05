@@ -11,9 +11,7 @@ const Heading = () => {
   return (
     <div className={styles.heading__container}>
       <h2 className={styles.heading}>
-        {currentType === EMovieType.All &&
-          currentKeyword &&
-          `Keyword: ${currentKeyword}`}
+        {currentType === EMovieType.All && `Keyword: ${currentKeyword}`}
         {currentType === EMovieType.NowPlaying && 'Now Playing'}
         {currentType === EMovieType.TopRated && 'Top Rated'}
       </h2>
