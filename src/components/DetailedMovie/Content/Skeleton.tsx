@@ -46,7 +46,7 @@ const Skeleton = () => {
       </div>
 
       {Array.from({ length: 4 }).map(() => (
-        <div className="skeleton-block-60" />
+        <div className="skeleton-block-60" key={Math.random()} />
       ))}
     </div>
   );

@@ -1,5 +1,6 @@
 'use client';
 
+import { isAxiosError } from 'axios';
 import type { FC } from 'react';
 import { useEffect } from 'react';
 import useSWR from 'swr';
@@ -7,6 +8,7 @@ import useSWR from 'swr';
 import { APIRouting } from '@/constants/routing';
 import type { MovieDetailsResponse } from '@/interfaces/movies';
 import { useMoviesSignal } from '@/stores/movies';
+import { useToastSignal } from '@/stores/toast';
 import { axiosFetcher } from '@/utils/fetcher';
 
 import Movie from './Movie';
@@ -18,6 +20,7 @@ interface IContentProps {
 
 const Content: FC<IContentProps> = ({ movieID }) => {
   const { DOMAddDisableScroll, DOMRemoveDisableScroll } = useMoviesSignal();
+  const { enableToast } = useToastSignal();
   const { data: movie, isLoading } = useSWR<MovieDetailsResponse>(
     `/${APIRouting.movie}/${movieID}`,
     axiosFetcher,
@@ -25,6 +28,13 @@ const Content: FC<IContentProps> = ({ movieID }) => {
       revalidateIfStale: false,
       revalidateOnFocus: false,
       revalidateOnReconnect: false,
+      onError(err) {
+        if (isAxiosError(err)) {
+          enableToast(err.response?.data?.message || err.message);
+        } else {
+          enableToast('An error occurred');
+        }
+      },
     },
   );
 
