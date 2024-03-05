@@ -5,8 +5,8 @@ import useMovies from '@/hooks/useMovies';
 import styles from './styles.module.scss';
 
 const CardsContainer = () => {
-  const { currentPage, currentType } = useCurrentParams();
-  const { movies } = useMovies(currentPage, currentType);
+  const { currentPage, currentType, currentKeyword } = useCurrentParams();
+  const { movies } = useMovies(currentPage, currentType, currentKeyword);
 
   return (
     <section className={styles.cardsContainer}>

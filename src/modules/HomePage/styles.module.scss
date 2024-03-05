@@ -1,0 +1,12 @@
+.container {
+  max-width: rem(1024px);
+  margin: auto;
+  padding: rem(75px) 0;
+
+  @include fromTablet {
+    padding: rem(75px) rem(20px);
+  }
+  @include onlyMobile {
+    padding: rem(75px) rem(20px);
+  }
+}
