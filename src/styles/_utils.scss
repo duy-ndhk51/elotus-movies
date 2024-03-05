@@ -31,6 +31,10 @@
   display: inline;
 }
 
+.margin-top-auto {
+  margin-top: auto;
+}
+
 .items-center {
   align-items: center;
 }
@@ -67,6 +71,11 @@
 .skeleton-block-60 {
   @include skeleton-block(60);
 }
+
+.skeleton-block-80 {
+  @include skeleton-block(80);
+}
+
 .skeleton-block-100 {
   @include skeleton-block(100);
 }
