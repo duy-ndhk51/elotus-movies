@@ -27,11 +27,15 @@ const Pagination: FC = () => {
       if (event.key === 'Enter') {
         const value = Number(event.currentTarget.value);
         if (value >= 1 && value <= totalPages.value) {
-          router.push(`/?page=${value}&type=${currentType}`);
+          let queryString = `/?page=${value}&type=${currentType}`;
+          if (currentType === EMovieType.All) {
+            queryString += `&keyword=${currentKeyword}`;
+          }
+          router.push(queryString);
         }
       }
     },
-    [router, currentType],
+    [router, currentType, currentKeyword],
   );
 
   const generateNavigationLink = useCallback(
