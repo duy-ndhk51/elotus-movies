@@ -1,0 +1,23 @@
+.selectView {
+  display: flex;
+  gap: rem(20px);
+  align-items: center;
+  margin-bottom: rem(15px);
+
+  &__button {
+    color: $offWhite;
+    cursor: pointer;
+    background-color: transparent;
+    padding: rem(5px);
+    transition: background-color 0.3s ease-in-out;
+    border-radius: rem(5px);
+
+    &:hover {
+      background-color: rgba(242, 242, 242, 0.08);
+    }
+
+    &.active {
+      background-color: rgba(242, 242, 242, 0.08);
+    }
+  }
+}
