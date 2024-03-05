@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import dynamic from 'next/dynamic';
 import { useRef, useState } from 'react';
 
+import FallbackSVG from '@/components/FallbackSVG';
 import { EMovieType } from '@/constants/movie';
 import { ClientRouting } from '@/constants/routing';
 import useClickOutside from '@/hooks/useclickOutside';
@@ -10,7 +11,7 @@ import { useCurrentParams } from '@/hooks/useCurrentParams';
 import tabbarStyles from '../styles.module.scss';
 import SInput from './SInput';
 
-const SVG = dynamic(() => import('react-inlinesvg'), { ssr: false });
+const SVG = dynamic(() => import('react-inlinesvg'), { ssr: true });
 
 const Search = () => {
   const [enableSearch, setEnableSearch] = useState(false);
@@ -34,6 +35,7 @@ const Search = () => {
           src={`${ClientRouting.publicSVGs}/search.svg`}
           width={24}
           height={24}
+          loader={<FallbackSVG />}
         />
       </button>
       {enableSearch && <SInput ref={inputRef} />}

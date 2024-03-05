@@ -9,11 +9,12 @@ import { EMovieType } from '@/constants/movie';
 import { ClientRouting } from '@/constants/routing';
 import { useCurrentParams } from '@/hooks/useCurrentParams';
 
+import FallbackSVG from '../FallbackSVG';
 import Pagination from '../Pagination';
 import Search from './Search';
 import styles from './styles.module.scss';
 
-const SVG = dynamic(() => import('react-inlinesvg'), { ssr: false });
+const SVG = dynamic(() => import('react-inlinesvg'), { ssr: true });
 const TabBar = () => {
   const { currentType } = useCurrentParams();
   const pathname = usePathname();
@@ -44,6 +45,7 @@ const TabBar = () => {
           src={`${ClientRouting.publicSVGs}/top-rated.svg`}
           width={24}
           height={24}
+          loader={<FallbackSVG />}
         />
       </button>
       <button
@@ -62,6 +64,7 @@ const TabBar = () => {
           src={`${ClientRouting.publicSVGs}/now-playing.svg`}
           width={24}
           height={24}
+          loader={<FallbackSVG />}
         />
       </button>
       <Search />

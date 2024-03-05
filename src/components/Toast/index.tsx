@@ -7,6 +7,7 @@ import React, { useEffect } from 'react';
 import { ClientRouting } from '@/constants/routing';
 import { enableToast, toastError, useToastSignal } from '@/stores/toast';
 
+import FallbackSVG from '../FallbackSVG';
 import styles from './styles.module.scss';
 
 const SVG = dynamic(() => import('react-inlinesvg'), { ssr: false });
@@ -33,6 +34,7 @@ const Toast: FC = () => {
           src={`${ClientRouting.publicSVGs}/close.svg`}
           width={16}
           height={16}
+          loader={<FallbackSVG size={16} />}
         />
       </span>
       {toastError.value}

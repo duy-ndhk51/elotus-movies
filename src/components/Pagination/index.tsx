@@ -12,10 +12,11 @@ import { ClientRouting } from '@/constants/routing';
 import { useCurrentParams } from '@/hooks/useCurrentParams';
 import { totalPages } from '@/stores/movies';
 
+import FallbackSVG from '../FallbackSVG';
 import PInput from './PInput';
 import styles from './styles.module.scss';
 
-const SVG = dynamic(() => import('react-inlinesvg'), { ssr: false });
+const SVG = dynamic(() => import('react-inlinesvg'), { ssr: true });
 const Pagination: FC = () => {
   useSignals();
   const { currentPage, currentType, currentKeyword } = useCurrentParams();
@@ -62,6 +63,7 @@ const Pagination: FC = () => {
           src={`${ClientRouting.publicSVGs}/caret-right.svg`}
           width={16}
           height={16}
+          loader={<FallbackSVG size={16} />}
         />
       </Link>
 
@@ -93,6 +95,7 @@ const Pagination: FC = () => {
           src={`${ClientRouting.publicSVGs}/caret-right.svg`}
           width={16}
           height={16}
+          loader={<FallbackSVG size={16} />}
         />
       </Link>
     </nav>
