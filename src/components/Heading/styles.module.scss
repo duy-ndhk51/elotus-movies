@@ -1,0 +1,9 @@
+.heading {
+  font-size: rem(32px);
+  color: $offWhite;
+  line-height: 135%;
+  font-weight: 600;
+  &__container {
+    margin-bottom: rem(15px);
+  }
+}
