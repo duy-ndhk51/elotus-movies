@@ -14,7 +14,6 @@ interface IListView {
 const ListView: FC<IListView> = ({ isLoading, movies }) => {
   return (
     <section className={styles.listView}>
-      <h1>List View</h1>
       {isLoading
         ? Array.from({ length: 20 }).map(() => (
             <CardListSkeleton key={Math.random()} />
